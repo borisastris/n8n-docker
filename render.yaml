@@ -2,35 +2,12 @@ services:
   - type: web
     name: n8n
     env: docker
-    region: oregon # optional (defaults to oregon)
-    plan: standard # optional (defaults to starter)
-    branch: main # optional (defaults to master)
-    # dockerCommand: ./webdis.sh # optional (defaults to Dockerfile command)
+    region: oregon  # Optional (defaults to oregon)
+    plan: standard  # Optional (defaults to starter)
+    branch: main  # Optional (defaults to master)
     numInstances: 1
     healthCheckPath: /
-    envVars:
-      - key: PGHOST
-        fromDatabase:
-          name: n8nDB
-          property: host
-      - key: PGDATABASE
-        fromDatabase:
-          name: n8nDB
-          property: database
-      - key: PGPORT
-        fromDatabase:
-          name: n8nDB
-          property: port
-      - key: PGUSER
-        fromDatabase:
-          name: n8nDB
-          property: user
-      - key: PGPASSWORD
-        fromDatabase:
-          name: n8nDB
-          property: password
     disk:
       name: n8nDisk
-      mountPath: /home/node/.n8n
-      sizeGB: 10
-
+      mountPath: /home/node/.n8n  # Ensures SQLite data persists
+      sizeGB: 10  # Adjust as needed
